@@ -2,28 +2,28 @@ import { Component, useState } from 'react';
 import classes from './Counter.module.css';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import useTwoWayBinding from '../hooks/useTwoWayBinding';
+import { counterAction } from '../store';
 
 const Counter = () => {
+
   const counter = useSelector(({ counter }) => counter)
   const show = useSelector(({ showCounter }) => showCounter)
   const dispatch = useDispatch()
   const { val: amount,
-    setVal: setAmount,
     onChangeVal: onChangeAmount
   } = useTwoWayBinding('')
 
   function incrementHandler() {
-    dispatch({ type: 'increment' })
+    dispatch(counterAction.increment())
   }
   function increaseBy() {
-    dispatch({ type: 'increase-by', amount: Number(amount) })
-    // setAmount('')
+    dispatch(counterAction.increase(Number(amount)))
   }
   function decrementHandler() {
-    dispatch({ type: 'decrement' })
+    dispatch(counterAction.decrement())
   }
   const toggleCounterHandler = () => {
-    dispatch({ type: 'toggle' })
+    dispatch(counterAction.toggle())
   };
 
   return (
