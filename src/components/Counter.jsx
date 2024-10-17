@@ -2,12 +2,12 @@ import { Component, useState } from 'react';
 import classes from './Counter.module.css';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import useTwoWayBinding from '../hooks/useTwoWayBinding';
-import { counterAction } from '../store';
+import { counterAction } from '../store/counter';
 
 const Counter = () => {
 
-  const counter = useSelector(({ counter }) => counter)
-  const show = useSelector(({ showCounter }) => showCounter)
+  const counter = useSelector(({ counter }) => counter.counter)
+  const show = useSelector(({ counter }) => counter.showCounter)
   const dispatch = useDispatch()
   const { val: amount,
     onChangeVal: onChangeAmount

@@ -1,13 +1,19 @@
-import { Provider } from 'react-redux';
 import Counter from './components/Counter';
-import store from './store';
+import Header from './components/Header';
+import Auth from './components/Auth';
+import UserProfile from './components/UserProfile';
+import { useSelector } from 'react-redux';
 
 
 function App() {
+  const isAuthen = useSelector(({ auth }) => auth.isAuthen)
   return (
-    <Provider store={store}>
+    <>
+      <Header />
+      {!isAuthen && <Auth />}
+      {isAuthen && <UserProfile />}
       <Counter />
-    </Provider>
+    </>
   );
 }
 
